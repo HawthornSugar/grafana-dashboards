@@ -76,7 +76,6 @@ export const getStyles = stylesFactory((theme: GrafanaTheme) => {
         position: sticky;
         left: 0;
         z-index: 1;
-        outline: 1px solid ${borderColor};
       }
 
       .tr .td:nth-child(2) {
@@ -84,21 +83,18 @@ export const getStyles = stylesFactory((theme: GrafanaTheme) => {
         position: sticky;
         left: 40px;
         z-index: 1;
-        outline: 1px solid ${borderColor};
       }
       .th:first-child {
         position: -webkit-sticky; /* for Safari */
         position: sticky;
         left: 0;
         z-index: 3;
-        outline: 1px solid ${borderColor};
       }
       .th:nth-child(2) {
         position: -webkit-sticky; /* for Safari */
         position: sticky;
         left: 40px;
         z-index: 3;
-        outline: 1px solid ${borderColor};
       }
       .pagination {
         padding: 0.5rem;
@@ -110,7 +106,6 @@ export const getStyles = stylesFactory((theme: GrafanaTheme) => {
       height: ${height - 70}px;
       justify-content: center;
       align-items: center;
-      border: 1px solid ${borderColor};
     `,
     checkboxColumn: css`
       width: 20px;
@@ -168,6 +163,9 @@ export const getStyles = stylesFactory((theme: GrafanaTheme) => {
       position: sticky;
       top: 0;
       z-index: 999;
+    `,
+    getColumnsWidth: (width) => css`
+      min-width: ${width}
     `,
     tableCell: css`
       display: flex !important;
