@@ -39,6 +39,7 @@ export const PlatformLogin: FC<SignUpProps> = ({ userEmail }) => {
   );
 
   const handleSignUpFormSubmit = async (credentials: Credentials) => {
+    console.log(credentials)
     try {
       const result = await PlatformLoginService.signUp(credentials);
 
@@ -69,7 +70,7 @@ export const PlatformLogin: FC<SignUpProps> = ({ userEmail }) => {
   };
 
   const InnerForm: FC<FormRenderProps<Credentials>> = ({
-    pristine, submitting, valid, handleSubmit
+    pristine, submitting, valid, handleSubmit, form
   }) => (
     <form data-qa="sign-up-form" className={styles.form} onSubmit={handleSubmit}>
       <legend className={styles.legend}>
@@ -103,9 +104,13 @@ export const PlatformLogin: FC<SignUpProps> = ({ userEmail }) => {
       <ButtonWithSpinner
         data-qa="sign-up-submit-button"
         className={styles.submitButton}
-        type="submit"
+        type="button"
         disabled={!valid || submitting || pristine}
         isLoading={submitting}
+        onClick={() => {
+          form.change('type', 'signUp');
+          form.submit();
+        }}
       >
         {Messages.perconaPlatform}
       </ButtonWithSpinner>
@@ -114,7 +119,10 @@ export const PlatformLogin: FC<SignUpProps> = ({ userEmail }) => {
         className={styles.signInButton}
         type="button"
         variant="destructive"
-        onClick={handleSignInFormSubmit}
+        onClick={() => {
+          form.change('type', 'signIn');
+          form.submit();
+        }}
       >
         {Messages.signIn}
       </Button>
